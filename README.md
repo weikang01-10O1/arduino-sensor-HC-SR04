@@ -35,4 +35,21 @@ Este repositorio contiene el **firmware completo** para un nodo LoRaWAN basado e
 
 El pin **ECHO** del HC‑SR04 genera pulsos de **5 V** al detectar el retorno de la señal ultrasónica. Los pines del ESP32‑S3 solo soportan **3.3 V** como máximo; una conexión directa dañaría irreversiblemente el microcontrolador.
 
-Para resolverlo se implementó un **divisor de tensión resistivo pasivo**:
+
+# 🔧 Configuración obligatoria del firmware
+
+Antes de compilar y cargar el código en tu placa **Heltec WiFi LoRa 32 V3**, debes rellenar **obligatoriamente** los siguientes campos en el archivo de código fuente (`*.ino` o ). Si no lo haces, el nodo no podrá unirse a la red LoRaWAN ni enviar datos.
+
+---
+
+## 1. Licencia de Heltec (`license[4]`)
+
+El chip LoRa SX1262 de la placa necesita una licencia propietaria para funcionar. El código contiene esta línea:
+
+```cpp
+uint32_t license[4] = {};
+
+#Estos valores son únicos para cada dispositivo registrado en TTN. En el firmware se definen como arreglos de bytes, por ejemplo:
+uint8_t devEui[] = { };
+uint8_t appEui[] = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
+uint8_t appKey[] = { };
