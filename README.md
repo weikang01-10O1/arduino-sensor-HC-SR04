@@ -1,4 +1,4 @@
-# Sensor HC‑SR04 + Heltec LoRa 32 V3 → The Things Network
+# Sensor HC‑SR04 + Heltec LoRa 32 V3 → gateway → The Things Network
 
 
 ---
